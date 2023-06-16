@@ -1,0 +1,34 @@
+version: 2
+sources:
+
+  - name: tpcds
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCDS_SF10TCL
+    loader: SNOWFLAKE
+
+    tables:
+      - name: call_center
+      - name: catalog_page
+      - name: catalog_returns
+      - name: catalog_sales
+      - name: customer_address
+      - name: customer_demographics
+      - name: customer
+      - name: date_dim
+      - name: household_demographics
+      - name: income_band
+      - name: inventory
+      - name: item
+      - name: promotion
+      - name: promotion_demographics
+      - name: reason
+      - name: ship_mode
+      - name: store_returns
+      - name: store_sales
+      - name: store
+      - name: time_dim
+      - name: web_page
+      - name: web_returns
+      - name: web_sales
+      - name: web_site
+      - name: warehouse
