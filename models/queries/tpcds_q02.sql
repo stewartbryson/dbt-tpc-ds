@@ -59,7 +59,7 @@ SELECT d_week_seq1,
        round(wed_sales1/wed_sales2, 2) r4,
        round(thu_sales1/thu_sales2, 2) r5,
        round(fri_sales1/fri_sales2, 2) r6,
-       round(sat_sales1/sat_sales2, 2)
+       round(sat_sales1/sat_sales2, 2) r7
 FROM
     (SELECT wswscs.d_week_seq d_week_seq1,
             sun_sales sun_sales1,
