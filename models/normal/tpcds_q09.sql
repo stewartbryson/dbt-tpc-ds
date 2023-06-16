@@ -1,9 +1,8 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q09_100G_result.parquet') }}
 WITH store_sales AS (
-    select * from {{ source('external_source', 'store_sales') }}
+    select * from {{ source('tpcds', 'store_sales') }}
 ),
 reason AS (
-    select * from {{ source('external_source', 'reason') }}
+    select * from {{ source('tpcds', 'reason') }}
 )
 
 SELECT CASE

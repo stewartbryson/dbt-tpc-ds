@@ -1,18 +1,17 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q16_100G_result.parquet') }}
 WITH catalog_sales AS (
-    select * from {{ source('external_source', 'catalog_sales') }}
+    select * from {{ source('tpcds', 'catalog_sales') }}
 ),
 catalog_returns AS (
-    select * from {{ source('external_source', 'catalog_returns') }}
+    select * from {{ source('tpcds', 'catalog_returns') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 customer_address AS (
-    select * from {{ source('external_source', 'customer_address') }}
+    select * from {{ source('tpcds', 'customer_address') }}
 ),
 call_center AS (
-    select * from {{ source('external_source', 'call_center') }}
+    select * from {{ source('tpcds', 'call_center') }}
 )
 
 SELECT count(DISTINCT cs_order_number) AS "order count",

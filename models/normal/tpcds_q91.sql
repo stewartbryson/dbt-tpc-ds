@@ -1,34 +1,33 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q91_100G_result.parquet') }}
 
 WITH catalog_sales AS (
-    select * from {{ source('external_source', 'catalog_sales') }}
+    select * from {{ source('tpcds', 'catalog_sales') }}
 ),
 catalog_returns AS (
-    select * from {{ source('external_source', 'catalog_returns') }}
+    select * from {{ source('tpcds', 'catalog_returns') }}
 ),
 call_center AS (
-    select * from {{ source('external_source', 'call_center') }}
+    select * from {{ source('tpcds', 'call_center') }}
 ),
 store_returns AS (
-    select * from {{ source('external_source', 'store_returns') }}
+    select * from {{ source('tpcds', 'store_returns') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 store AS (
-    select * from {{ source('external_source', 'store') }}
+    select * from {{ source('tpcds', 'store') }}
 ),
 customer AS (
-    select * from {{ source('external_source', 'customer') }}
+    select * from {{ source('tpcds', 'customer') }}
 ),
 customer_address AS (
-    select * from {{ source('external_source', 'customer_address') }}
+    select * from {{ source('tpcds', 'customer_address') }}
 ),
 customer_demographics AS (
-    select * from {{ source('external_source', 'customer_demographics') }}
+    select * from {{ source('tpcds', 'customer_demographics') }}
 ),
 household_demographics AS (
-    select * from {{ source('external_source', 'household_demographics') }}
+    select * from {{ source('tpcds', 'household_demographics') }}
 )
 SELECT cc_call_center_id Call_Center,
        cc_name Call_Center_Name,

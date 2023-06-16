@@ -1,7 +1,6 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q41_100G_result.parquet') }}
 
 WITH item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 )
 SELECT distinct(i_product_name)
 FROM item i1

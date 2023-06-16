@@ -1,34 +1,33 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q85_100G_result.parquet') }}
 
 WITH date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 customer AS (
-    select * from {{ source('external_source', 'customer') }}
+    select * from {{ source('tpcds', 'customer') }}
 ),
 customer_address AS (
-    select * from {{ source('external_source', 'customer_address') }}
+    select * from {{ source('tpcds', 'customer_address') }}
 ),
 customer_demographics AS (
-    select * from {{ source('external_source', 'customer_demographics') }}
+    select * from {{ source('tpcds', 'customer_demographics') }}
 ),
 household_demographics AS (
-    select * from {{ source('external_source', 'household_demographics') }}
+    select * from {{ source('tpcds', 'household_demographics') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 ),
 reason AS (
-    select * from {{ source('external_source', 'reason') }}
+    select * from {{ source('tpcds', 'reason') }}
 ),
 web_page AS (
-    select * from {{ source('external_source', 'web_page') }}
+    select * from {{ source('tpcds', 'web_page') }}
 ),
 web_sales AS (
-    select * from {{ source('external_source', 'web_sales') }}
+    select * from {{ source('tpcds', 'web_sales') }}
 ),
 web_returns AS (
-    select * from {{ source('external_source', 'web_returns') }}
+    select * from {{ source('tpcds', 'web_returns') }}
 )
 SELECT SUBSTRING(r_reason_desc,1,20) ,
        avg(ws_quantity) avg1,

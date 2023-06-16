@@ -1,12 +1,12 @@
 
 WITH date_dim AS (
-         select * from {{ source('external_source', 'date_dim') }}
+         select * from {{ source('tpcds', 'date_dim') }}
      ),
      catalog_sales AS (
-         select * from {{ source('external_source', 'catalog_sales') }}
+         select * from {{ source('tpcds', 'catalog_sales') }}
      ),
      web_sales AS (
-         select * from {{ source('external_source', 'web_sales') }}
+         select * from {{ source('tpcds', 'web_sales') }}
      ), wscs AS
          (SELECT sold_date_sk,
                  sales_price

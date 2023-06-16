@@ -1,40 +1,39 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q80_100G_result.parquet') }}
 
 WITH catalog_sales AS (
-    select * from {{ source('external_source', 'catalog_sales') }}
+    select * from {{ source('tpcds', 'catalog_sales') }}
 ),
 catalog_returns AS (
-    select * from {{ source('external_source', 'catalog_returns') }}
+    select * from {{ source('tpcds', 'catalog_returns') }}
 ),
 catalog_page AS (
-    select * from {{ source('external_source', 'catalog_page') }}
+    select * from {{ source('tpcds', 'catalog_page') }}
 ),
 store_sales AS (
-    select * from {{ source('external_source', 'store_sales') }}
+    select * from {{ source('tpcds', 'store_sales') }}
 ),
 store_returns AS (
-    select * from {{ source('external_source', 'store_returns') }}
+    select * from {{ source('tpcds', 'store_returns') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 store AS (
-    select * from {{ source('external_source', 'store') }}
+    select * from {{ source('tpcds', 'store') }}
 ),
 promotion AS (
-    select * from {{ source('external_source', 'promotion') }}
+    select * from {{ source('tpcds', 'promotion') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 ),
 web_sales AS (
-    select * from {{ source('external_source', 'web_sales') }}
+    select * from {{ source('tpcds', 'web_sales') }}
 ),
 web_returns AS (
-    select * from {{ source('external_source', 'web_returns') }}
+    select * from {{ source('tpcds', 'web_returns') }}
 ),
 web_site AS (
-    select * from {{ source('external_source', 'web_site') }}
+    select * from {{ source('tpcds', 'web_site') }}
 ),
 ssr AS
   (SELECT s_store_id AS store_id,

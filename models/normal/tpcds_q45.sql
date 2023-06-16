@@ -1,19 +1,18 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q45_100G_result.parquet') }}
 
 WITH date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 customer AS (
-    select * from {{ source('external_source', 'customer') }}
+    select * from {{ source('tpcds', 'customer') }}
 ),
 customer_address AS (
-    select * from {{ source('external_source', 'customer_address') }}
+    select * from {{ source('tpcds', 'customer_address') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 ),
 web_sales AS (
-    select * from {{ source('external_source', 'web_sales') }}
+    select * from {{ source('tpcds', 'web_sales') }}
 )
 SELECT ca_zip,
        ca_city,

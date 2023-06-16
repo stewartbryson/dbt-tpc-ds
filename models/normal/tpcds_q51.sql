@@ -1,19 +1,18 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q51_100G_result.parquet') }}
 
 WITH store_sales AS (
-    select * from {{ source('external_source', 'store_sales') }}
+    select * from {{ source('tpcds', 'store_sales') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 store AS (
-    select * from {{ source('external_source', 'store') }}
+    select * from {{ source('tpcds', 'store') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 ),
 web_sales AS (
-    select * from {{ source('external_source', 'web_sales') }}
+    select * from {{ source('tpcds', 'web_sales') }}
 ),
 web_v1 AS (
     SELECT ws_item_sk item_sk,

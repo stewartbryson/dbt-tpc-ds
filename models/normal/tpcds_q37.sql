@@ -1,16 +1,15 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q37_100G_result.parquet') }}
 
 WITH catalog_sales AS (
-    select * from {{ source('external_source', 'catalog_sales') }}
+    select * from {{ source('tpcds', 'catalog_sales') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 inventory AS (
-    select * from {{ source('external_source', 'inventory') }}
+    select * from {{ source('tpcds', 'inventory') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 )
 SELECT i_item_id,
        i_item_desc,

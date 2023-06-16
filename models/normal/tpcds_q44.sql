@@ -1,13 +1,12 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q44_100G_result.parquet') }}
 
 WITH store_sales AS (
-    select * from {{ source('external_source', 'store_sales') }}
+    select * from {{ source('tpcds', 'store_sales') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 )
 SELECT asceding.rnk,
        i1.i_product_name best_performing,

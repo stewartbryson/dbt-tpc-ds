@@ -1,31 +1,30 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q90_100G_result.parquet') }}
 
 WITH catalog_sales AS (
-    select * from {{ source('external_source', 'catalog_sales') }}
+    select * from {{ source('tpcds', 'catalog_sales') }}
 ),
 store_sales AS (
-    select * from {{ source('external_source', 'store_sales') }}
+    select * from {{ source('tpcds', 'store_sales') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 time_dim AS (
-    select * from {{ source('external_source', 'time_dim') }}
+    select * from {{ source('tpcds', 'time_dim') }}
 ),
 store AS (
-    select * from {{ source('external_source', 'store') }}
+    select * from {{ source('tpcds', 'store') }}
 ),
 household_demographics AS (
-    select * from {{ source('external_source', 'household_demographics') }}
+    select * from {{ source('tpcds', 'household_demographics') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 ),
 web_page AS (
-    select * from {{ source('external_source', 'web_page') }}
+    select * from {{ source('tpcds', 'web_page') }}
 ),
 web_sales AS (
-    select * from {{ source('external_source', 'web_sales') }}
+    select * from {{ source('tpcds', 'web_sales') }}
 )
 SELECT case when pmc=0 then null else cast(amc AS decimal(15,4))/cast(pmc AS decimal(15,4)) end am_pm_ratio
 FROM

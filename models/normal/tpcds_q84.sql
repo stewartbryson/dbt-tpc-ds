@@ -1,28 +1,27 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q84_100G_result.parquet') }}
 
 WITH store_returns AS (
-    select * from {{ source('external_source', 'store_returns') }}
+    select * from {{ source('tpcds', 'store_returns') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 store AS (
-    select * from {{ source('external_source', 'store') }}
+    select * from {{ source('tpcds', 'store') }}
 ),
 customer AS (
-    select * from {{ source('external_source', 'customer') }}
+    select * from {{ source('tpcds', 'customer') }}
 ),
 customer_address AS (
-    select * from {{ source('external_source', 'customer_address') }}
+    select * from {{ source('tpcds', 'customer_address') }}
 ),
 customer_demographics AS (
-    select * from {{ source('external_source', 'customer_demographics') }}
+    select * from {{ source('tpcds', 'customer_demographics') }}
 ),
 household_demographics AS (
-    select * from {{ source('external_source', 'household_demographics') }}
+    select * from {{ source('tpcds', 'household_demographics') }}
 ),
 income_band AS (
-    select * from {{ source('external_source', 'income_band') }}
+    select * from {{ source('tpcds', 'income_band') }}
 )
 SELECT c_customer_id AS customer_id ,
        concat(concat(coalesce(c_last_name, '') , ', '), coalesce(c_first_name, '')) AS customername

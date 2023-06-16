@@ -1,16 +1,15 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q30_100G_result.parquet') }}
 
 WITH date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 customer AS (
-    select * from {{ source('external_source', 'customer') }}
+    select * from {{ source('tpcds', 'customer') }}
 ),
 customer_address AS (
-    select * from {{ source('external_source', 'customer_address') }}
+    select * from {{ source('tpcds', 'customer_address') }}
 ),
 web_returns AS (
-    select * from {{ source('external_source', 'web_returns') }}
+    select * from {{ source('tpcds', 'web_returns') }}
 ),
 customer_total_return AS (
     SELECT wr_returning_customer_sk AS ctr_customer_sk,

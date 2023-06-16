@@ -30,7 +30,4 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   tpc_ds:
-    test:
-      +materialized: table
-    special:
-      +materialized: table
+    +materialized: table

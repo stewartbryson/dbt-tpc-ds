@@ -1,46 +1,45 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q64_100G_result.parquet') }}
 
 WITH catalog_sales AS (
-    select * from {{ source('external_source', 'catalog_sales') }}
+    select * from {{ source('tpcds', 'catalog_sales') }}
 ),
 catalog_returns AS (
-    select * from {{ source('external_source', 'catalog_returns') }}
+    select * from {{ source('tpcds', 'catalog_returns') }}
 ),
 store_sales AS (
-    select * from {{ source('external_source', 'store_sales') }}
+    select * from {{ source('tpcds', 'store_sales') }}
 ),
 store_returns AS (
-    select * from {{ source('external_source', 'store_returns') }}
+    select * from {{ source('tpcds', 'store_returns') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 store AS (
-    select * from {{ source('external_source', 'store') }}
+    select * from {{ source('tpcds', 'store') }}
 ),
 customer AS (
-    select * from {{ source('external_source', 'customer') }}
+    select * from {{ source('tpcds', 'customer') }}
 ),
 customer_demographics AS (
-    select * from {{ source('external_source', 'customer_demographics') }}
+    select * from {{ source('tpcds', 'customer_demographics') }}
 ),
 promotion AS (
-    select * from {{ source('external_source', 'promotion') }}
+    select * from {{ source('tpcds', 'promotion') }}
 ),
 promotion_demographics AS (
-    select * from {{ source('external_source', 'promotion_demographics') }}
+    select * from {{ source('tpcds', 'promotion_demographics') }}
 ),
 household_demographics AS (
-    select * from {{ source('external_source', 'household_demographics') }}
+    select * from {{ source('tpcds', 'household_demographics') }}
 ),
 customer_address AS (
-    select * from {{ source('external_source', 'customer_address') }}
+    select * from {{ source('tpcds', 'customer_address') }}
 ),
 income_band AS (
-    select * from {{ source('external_source', 'income_band') }}
+    select * from {{ source('tpcds', 'income_band') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 ),
 cs_ui AS (SELECT cs.cs_item_sk,
           sum(cs.cs_ext_list_price) AS sale,

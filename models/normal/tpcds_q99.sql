@@ -1,28 +1,27 @@
-{{ config(materialized='external', location='s3://datafy-dp-samples-ympfsg/tpcds-dbt-duckdb/q99_100G_result.parquet') }}
 
 WITH catalog_sales AS (
-    select * from {{ source('external_source', 'catalog_sales') }}
+    select * from {{ source('tpcds', 'catalog_sales') }}
 ),
 store_sales AS (
-    select * from {{ source('external_source', 'store_sales') }}
+    select * from {{ source('tpcds', 'store_sales') }}
 ),
 call_center AS (
-    select * from {{ source('external_source', 'call_center') }}
+    select * from {{ source('tpcds', 'call_center') }}
 ),
 date_dim AS (
-    select * from {{ source('external_source', 'date_dim') }}
+    select * from {{ source('tpcds', 'date_dim') }}
 ),
 inventory AS (
-    select * from {{ source('external_source', 'inventory') }}
+    select * from {{ source('tpcds', 'inventory') }}
 ),
 item AS (
-    select * from {{ source('external_source', 'item') }}
+    select * from {{ source('tpcds', 'item') }}
 ),
 ship_mode AS (
-    select * from {{ source('external_source', 'ship_mode') }}
+    select * from {{ source('tpcds', 'ship_mode') }}
 ),
 warehouse AS (
-    select * from {{ source('external_source', 'warehouse') }}
+    select * from {{ source('tpcds', 'warehouse') }}
 )
 SELECT w_substr ,
        sm_type ,
